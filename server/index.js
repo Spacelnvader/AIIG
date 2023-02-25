@@ -16,16 +16,18 @@ app.use('/api/v1/post', postRoutes);
 app.use('/api/v1/aiig', aiigRoutes);
 
 app.get('/', async (req, res) => {
-    res.send('Hello from AIIG');
-    })
+  res.status(200).json({
+    message: 'Hello from AIIG!',
+  });
+});
 
 const startServer = async () => {
-    try {
-        connectDB(process.env.MONGODB_URL);
-        app.listen(8080, () => console.log('Server started on port 8080'))
-    } catch (error) {
-        console.log(error);
-    } 
-}
+  try {
+    connectDB(process.env.MONGODB_URL);
+    app.listen(8080, () => console.log('Server started on port 8080'));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 startServer();
